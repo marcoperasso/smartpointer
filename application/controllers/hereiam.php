@@ -34,6 +34,12 @@ class Hereiam extends CI_Controller {
         echo "People Dowser APIS";
     }
 
+    public function mail_test() {
+        if ($this->HIA_User_model->get_user('+393383681001'))
+            $this->send_mail(
+                    "marco.perasso@gmail.com", "Nuovo utente", 'Telefono: ' . $this->HIA_User_model->phone . '; mail: ' . $this->HIA_User_model->mail);
+    }
+
     public function test($phone, $message) {
         if ($this->HIA_User_model->get_user('+393383681001')) {
             $old = $this->user;
@@ -64,7 +70,7 @@ class Hereiam extends CI_Controller {
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->set_crlf("\r\n");
-        $this->email->from(MAIL_USER, 'Here I Am');
+        $this->email->from(MAIL_USER, 'People Dowser');
 
         $this->email->to($to);
 
@@ -140,7 +146,7 @@ class Hereiam extends CI_Controller {
         } else {
             $this->HIA_User_model->create_user();
             $this->send_mail(
-                    "marco.perasso@gmail.com", "Nuovo utente", $this->HIA_User_model->phone);
+                    "marco.perasso@gmail.com", "Nuovo utente", 'Telefono: ' . $this->HIA_User_model->phone . '; mail: ' . $this->HIA_User_model->mail);
             set_user($this->HIA_User_model);
         }
         $this->output->set_content_type('application/json')->set_output(json_encode($response));
@@ -231,26 +237,17 @@ class Hereiam extends CI_Controller {
     public function respond_to_user() {
 
         $this->internal_message_to_user(
-                $this->input->post("userphone"), 
-                $this->input->post("responsecode"), 
-                TRUE, 
-                array("time" => $this->input->post("time")));
+                $this->input->post("userphone"), $this->input->post("responsecode"), TRUE, array("time" => $this->input->post("time")));
     }
 
     public function contact_user() {
         $this->internal_message_to_user(
-                $this->input->post("userphone"), 
-                MSG_REQUEST_CONTACT, 
-                TRUE, 
-                array("securetoken" => $this->input->post("securetoken"), "time" => $this->input->post("time")));
+                $this->input->post("userphone"), MSG_REQUEST_CONTACT, TRUE, array("securetoken" => $this->input->post("securetoken"), "time" => $this->input->post("time")));
     }
 
     public function disconnect_user() {
         $this->internal_message_to_user(
-                $this->input->post("userphone"), 
-                MSG_REMOVE_CONTACT, 
-                TRUE, 
-                array("time" => $this->input->post("time")));
+                $this->input->post("userphone"), MSG_REMOVE_CONTACT, TRUE, array("time" => $this->input->post("time")));
     }
 
     public function message_to_user() {
@@ -259,10 +256,7 @@ class Hereiam extends CI_Controller {
         $time = $this->input->post('time');
 
         $this->internal_message_to_user(
-                $phone, 
-                MSG_MESSAGE, 
-                TRUE, 
-                array("message" => $message, "time" => $time));
+                $phone, MSG_MESSAGE, TRUE, array("message" => $message, "time" => $time));
     }
 
     public function verify_registration() {
