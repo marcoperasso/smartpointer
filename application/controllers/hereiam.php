@@ -263,7 +263,7 @@ class Hereiam extends CI_Controller {
         $json = $this->input->post("data");
         $phones = json_decode($json);
         foreach ($phones->users as &$phone) {
-            $phone = $this->HIA_User_model->get_user($phone);
+            $phone = $this->HIA_User_model->get_user($phone) && !empty($this->HIA_User_model->regid);
         }
         $response = array('result' => SUCCESS, 'users' => $phones->users);
         $this->output
