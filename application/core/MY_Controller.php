@@ -17,8 +17,8 @@ class MY_Controller extends CI_Controller {
           $lang = $this->config['language'];
           if (!$this->lang->load("messages", $lang)) */
         $this->lang->load("messages", "it-IT");
-        $this->load->model('User_model');
-        $this->user = (isset($_SESSION) && isset($_SESSION['user'])) ? unserialize($_SESSION["user"]) : NULL;
+        //$this->load->model('User_model');
+        //$this->user = (isset($_SESSION) && isset($_SESSION['user'])) ? unserialize($_SESSION["user"]) : NULL;
     }
 
     protected function send_mail($to, $subject, $message) {
@@ -36,7 +36,7 @@ class MY_Controller extends CI_Controller {
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->set_crlf("\r\n");
-        $this->email->from(MAIL_USER, 'ECOmmuters');
+        $this->email->from(MAIL_USER, 'Smart Pointer');
 
         $this->email->to($to);
 
