@@ -10,7 +10,7 @@ class Home extends MY_Controller {
     }
 
     public function index() {
-	$this->load->view('home_not_logged');
+	$this->load_view('home_not_logged', "Benvenuto in SmartPointer");
 	/*
         if ($this->user == NULL)
             $this->load_view('home_not_logged', "Benvenuto in ECOmmuters");
@@ -24,56 +24,7 @@ class Home extends MY_Controller {
         }*/
     }
 
-    public function get_more_posts($offset) {
-        $this->load->model('Post_model');
-        $data = array(
-            'posts' => $this->Post_model->get_posts($this->user->id, $offset),
-            'user' => $this->user);
-
-        $this->load->view('posts', $data);
-    }
-
-    public function create_post() {
-        if (!$this->validate_login())
-            return;
-        $this->load->model('Post_model');
-        $this->Post_model->userid = $this->user->id;
-        $this->Post_model->content = $this->input->post('content');
-        $this->Post_model->create_post();
-        $this->index();
-    }
-
-    public function update_post() {
-        if (!$this->validate_login())
-            return;
-        $this->load->model('Post_model');
-        $this->Post_model->userid = $this->user->id;
-        $this->Post_model->content = $this->input->post('postcontent');
-        $this->Post_model->time = $this->input->post('posttime');
-        
-        $response =(object) array('result' => $this->Post_model->update_post());
-        $this->output
-                ->set_content_type('application/json')
-                ->set_output(json_encode($response));
-    }
-
-    public function delete_post() {
-        if (!$this->validate_login())
-            return;
-        $this->load->model('Post_model');
-        $this->Post_model->userid = $this->user->id;
-        $this->Post_model->time = $this->input->get('posttime');
-        $this->Post_model->delete_post();
-        $this->index();
-    }
-    public function mission() {
-        $this->load_view('mission');
-    }
-
-    public function details() {
-        $this->load_view('details');
-    }
-
+    
 }
 
 /* End of file welcome.php */

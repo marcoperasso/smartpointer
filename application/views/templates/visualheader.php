@@ -1,18 +1,18 @@
 <div class="header row">
     <?php
     $caller = $this->router->fetch_class() . '/' . $this->router->fetch_method();
-    if (!isset($user))
-        $this->load->view('login');
+    //if (!isset($user))
+    //   $this->load->view('login');
     ?>
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Home</a>
+            <a class="navbar-brand" href="/"><img alt="logo" src="/asset/img/logo-header.png"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
+<!--        <div class="collapse navbar-collapse navbar-ex1-collapse">
             <?php
             if (isset($user)) {
                 ?>
@@ -36,15 +36,6 @@
                     </li>
                 <?php } ?>
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div> /.navbar-collapse -->
     </nav>
-    <script type="text/javascript">
-                                function doLogoff()
-                                {
-                                    $.getJSON("<?php echo base_url() ?>login/dologoff",
-                                            function() {
-                                                window.location.href = "/";
-                                            });
-                                }
-    </script>
 </div>
