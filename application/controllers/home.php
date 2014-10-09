@@ -10,7 +10,7 @@ class Home extends MY_Controller {
     }
 
     public function index() {
-	$this->load_view('home_not_logged', "Benvenuto in SmartPointer");
+	$this->load_view('home_not_logged', "Benvenuti in Smart Pointer");
 	/*
         if ($this->user == NULL)
             $this->load_view('home_not_logged', "Benvenuto in ECOmmuters");

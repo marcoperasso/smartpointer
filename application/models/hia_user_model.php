@@ -6,6 +6,7 @@ class HIA_User_model extends MY_Model {
     var $mail;
     var $password;
     var $regid;
+    var $pingdate;
 
     public function __construct() {
         parent::__construct();
@@ -20,7 +21,15 @@ class HIA_User_model extends MY_Model {
         return $this->db->update('hia_users', array(
                     'mail' => $this->mail,
                     'regid' => $this->regid,
-                    'password' => $this->password
+                    'password' => $this->password,
+                    'pingdate' => $this->pingdate
+        ));
+    }
+
+    public function update_user_ping() {
+        $this->db->where('phone', $this->phone);
+        return $this->db->update('hia_users', array(
+                    'pingdate' => date('Y-m-d')
         ));
     }
 
@@ -35,4 +44,11 @@ class HIA_User_model extends MY_Model {
         return FALSE;
     }
 
+    public function get_inactive_users($days) {
+        $today = date('Y-m-d');
+        $time = strtotime($today . '-' . $days.' day'); 
+        $limit =  date('Y-m-d', $time);
+        return $this->db->get_where('hia_users ', array('pingdate <' => $limit))->result();
+        
+    }
 }

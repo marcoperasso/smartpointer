@@ -15,6 +15,7 @@ if (!defined('BASEPATH')) {
         const MSG_WRONG_PASSWORD = 4;
         const MSG_MESSAGE = 5;
         const MSG_POSITION = 6;
+        const MSG_PING = 7;
 
 class Hereiam extends CI_Controller {
 
@@ -30,8 +31,18 @@ class Hereiam extends CI_Controller {
         $this->user = (isset($_SESSION) && isset($_SESSION['user'])) ? unserialize($_SESSION["user"]) : NULL;
     }
 
+    public function inactive_users($days) {
+        $this->load->model('HIA_User_model');
+        $query = $this->HIA_User_model->get_inactive_users($days);
+
+        foreach ($query as $value) {
+            echo $value->phone;
+            echo "<br>";
+        }
+    }
+
     public function index() {
-        echo "People Dowser APIS";
+        echo "People Finder APIS";
     }
 
     public function mail_test() {
@@ -70,7 +81,7 @@ class Hereiam extends CI_Controller {
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->set_crlf("\r\n");
-        $this->email->from(MAIL_USER, 'People Dowser');
+        $this->email->from(MAIL_USER, 'People Finder');
 
         $this->email->to($to);
 
@@ -134,6 +145,7 @@ class Hereiam extends CI_Controller {
         }
         $this->HIA_User_model->mail = $this->input->post('email');
         $this->HIA_User_model->phone = $phone;
+        $this->HIA_User_model->pingdate = date('Y-m-d H:i:s');
 
         $this->load->library('BCrypt');
         $bcrypt = new BCrypt(15);
@@ -148,6 +160,29 @@ class Hereiam extends CI_Controller {
             $this->send_mail(
                     "marco.perasso@gmail.com", "Nuovo utente", 'Telefono: ' . $this->HIA_User_model->phone . '; mail: ' . $this->HIA_User_model->mail);
             set_user($this->HIA_User_model);
+        }
+        $this->output->set_content_type('application/json')->set_output(json_encode($response));
+    }
+
+    public function ping_inactive_users() {
+        $this->load->model('HIA_User_model');
+        $query = $this->HIA_User_model->get_inactive_users(30);
+
+        foreach ($query as $value) {
+            if (empty($value->regid))
+                continue;
+           $this->send_message(array($value->regid), array('touserphone' =>$value->phone, 'msgtype' => MSG_PING), "MSG_PING");
+        }
+    }
+
+    public function pingback() {
+        $phone = $this->input->post('phone');
+        $existing = $this->HIA_User_model->get_user($phone);
+
+        if ($existing) {
+            $response = array('success' => $this->HIA_User_model->update_user_ping());
+        } else {
+            $response = array('success' => FALSE, 'message' => "Unknown user with phone: " . $phone);
         }
         $this->output->set_content_type('application/json')->set_output(json_encode($response));
     }

@@ -12,31 +12,30 @@ class Verbs extends MY_Controller {
     public function index() {
         header('Content-Type: text/html;charset=UTF-8');
         $this->load->model('Verb_model');
-		foreach ($this->Verb_model->getall() as $row)
-		{
+        foreach ($this->Verb_model->getall() as $row) {
             echo '<a href="verbs/get/' . base64_encode($row["verb"]) . '">' . $row["verb"] . '</a><br/>';
-			echo "\r\n";
-		}
+            echo "\r\n";
+        }
     }
-	public function gethints($constraint) {
+
+    public function gethints($constraint) {
         header('Content-Type: text/plain;charset=UTF-8');
-		$this->load->model('Verb_model');
-        foreach ($this->Verb_model->get_hints($constraint) as $row)
-		{
+        $this->load->model('Verb_model');
+        foreach ($this->Verb_model->get_hints($constraint) as $row) {
             echo $row["verb"];
-			echo "\r\n";
-		}
+            echo "\r\n";
+        }
     }
+
     public function get($name) {
         header('Content-Type: text/plain;charset=UTF-8');
         $this->load->model('Verb_model');
         $verb = $this->Verb_model->get(base64_decode($name));
-		if ($verb)
-		{
-			echo $verb->verb;
-			echo "\r\n";
-			echo $verb->content;
-		}
+        if ($verb) {
+            echo $verb->verb;
+            echo "\r\n";
+            echo $verb->content;
+        }
     }
 
     public function load() {

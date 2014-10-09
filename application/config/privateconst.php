@@ -4,17 +4,19 @@
  * Qui dovrebbero esserci tutit i delta di configurazione fra ambiente di sviluppo e di produzione
 */
 
-define('BASE_URL',              'http://www.ecommuters.com');
-define('BASE_URL_CONSIDERING_MOBILE',   'http://www.ecommuters.com/');
+define('BASE_URL',              'http://localhost:9999');
+define('BASE_URL_CONSIDERING_MOBILE',   'http://localhost:9999');
 
-define('DATABASE_USER',         'Sql660561');
-define('DATABASE_PASSWORD',     '915c40c4');
-define('DATABASE_HOST',         '62.149.150.187');
-define('DATABASE_NAME',         'Sql660561_1');
+define('DATABASE_USER',         'root');
+define('DATABASE_PASSWORD',     '');
+define('DATABASE_HOST',         'localhost');
+define('DATABASE_NAME',         'smartpointer');
 
 
 define('MAIL_HOST',             'smtp.aruba.it');
 define('MAIL_USER',             'info@ecommuters.com');
 define('MAIL_PASSWORD',         'mussa');
 define('MAIL_PORT',             25);
+
+define('ENVIRONMENT', 'development');
 ?>
