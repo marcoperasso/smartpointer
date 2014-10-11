@@ -18,5 +18,4 @@ define('MAIL_USER',             'info@ecommuters.com');
 define('MAIL_PASSWORD',         'mussa');
 define('MAIL_PORT',             25);
 
-define('ENVIRONMENT', 'development');
 ?>

@@ -7,12 +7,13 @@ RewriteBase /
 #RewriteRule ^(.*)$ index.php?/$1 [L]
 
 RewriteCond %{HTTP_HOST} ^www.smartpointer.it.*
+RewriteCond $1 !^(index\.php|asset|favicon\.ico|robots\.txt|ecommuters)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)$ index.php?/$1 [L]
 
 
 RewriteCond %{HTTP_HOST} ^localhost.*
-RewriteCond $1 !^(index\.php|asset|favicon\.ico|robots\.txt)
+RewriteCond $1 !^(index\.php|asset|favicon\.ico|robots\.txt|ecommuters)
 RewriteRule ^(.*)$ /index.php/$1 [L]
 </IfModule>
