@@ -34,7 +34,7 @@ class Hereiam extends CI_Controller {
     public function inactive_users() {
         $this->load->model('HIA_User_model');
         $query = $this->HIA_User_model->get_inactive_users(30);
-		echo "Total: " . count($query);
+        echo "Total: " . count($query);
         echo "<br>";
         foreach ($query as $value) {
             echo $value->phone;
@@ -170,10 +170,23 @@ class Hereiam extends CI_Controller {
         $query = $this->HIA_User_model->get_inactive_users(30);
 
         foreach ($query as $value) {
-            if (empty($value->regid))
+            if (empty($value->regid)) {
+                $this->HIA_User_model->delete_user($value->phone);
+                echo "Deleted user " . $value->phone . ": empty Regid.<br/>";
                 continue;
-           $res = $this->send_message(array($value->regid), array('touserphone' =>$value->phone, 'msgtype' => MSG_PING), "MSG_PING");
-		   echo $value->phone ."; " . $res . "<br>";
+            }
+            $res = $this->send_message(array($value->regid), array('touserphone' => $value->phone, 'msgtype' => MSG_PING), "MSG_PING");
+            if ($res) {
+                echo $value->phone . "; " . $res . "<br>";
+                $jsonRes = json_decode($res);
+                if (!$jsonRes->success && $jsonRes->results[0]->error == "NotRegistered") {
+                    $this->HIA_User_model->delete_user($value->phone);
+                    echo "Deleted user " . $value->phone . ": not registered.<br/>";
+                }
+            } else {
+                echo "Error sending message to user";
+                break;
+            }
         }
     }
 

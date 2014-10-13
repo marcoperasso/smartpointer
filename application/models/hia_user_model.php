@@ -32,6 +32,10 @@ class HIA_User_model extends MY_Model {
                     'pingdate' => date('Y-m-d')
         ));
     }
+ 
+    public function delete_user($phone) {
+        $query = $this->db->delete('hia_users ', array('phone' => $phone));
+    }
 
     public function get_user($phone) {
         $query = $this->db->get_where('hia_users ', array('phone' => $phone));
