@@ -73,15 +73,5 @@ function htmlSpaceIfEmpty($string) {
     return empty($string) ? '&nbsp;' : html_escape($string);
 }
 
-function get_user_photo($userid) {
-    if (file_exists('./user_data/' . $userid . '/photo.png'))
-        return '/user_data/' . $userid . '/photo.png';
-    
-    if (file_exists('./user_data/' . $userid . '/photo.jpg'))
-        return '/user_data/' . $userid . '/photo.jpg';
-    
-    
-    return "/asset/img/ecommuter.png";
-}
 
 ?>

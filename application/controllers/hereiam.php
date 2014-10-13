@@ -31,10 +31,11 @@ class Hereiam extends CI_Controller {
         $this->user = (isset($_SESSION) && isset($_SESSION['user'])) ? unserialize($_SESSION["user"]) : NULL;
     }
 
-    public function inactive_users($days) {
+    public function inactive_users() {
         $this->load->model('HIA_User_model');
-        $query = $this->HIA_User_model->get_inactive_users($days);
-
+        $query = $this->HIA_User_model->get_inactive_users(30);
+		echo "Total: " . count($query);
+        echo "<br>";
         foreach ($query as $value) {
             echo $value->phone;
             echo "<br>";
@@ -171,7 +172,8 @@ class Hereiam extends CI_Controller {
         foreach ($query as $value) {
             if (empty($value->regid))
                 continue;
-           $this->send_message(array($value->regid), array('touserphone' =>$value->phone, 'msgtype' => MSG_PING), "MSG_PING");
+           $res = $this->send_message(array($value->regid), array('touserphone' =>$value->phone, 'msgtype' => MSG_PING), "MSG_PING");
+		   echo $value->phone ."; " . $res . "<br>";
         }
     }
 

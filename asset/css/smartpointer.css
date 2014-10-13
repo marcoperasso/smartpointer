@@ -31,7 +31,7 @@ footer
     width:100%;
     height:auto;  
     padding: 10px;
-    background-image: url('/asset/img/greengrass.png');
+    background-image: url('../img/greengrass.png');
     background-repeat: repeat-x;
     background-size: contain;
 }

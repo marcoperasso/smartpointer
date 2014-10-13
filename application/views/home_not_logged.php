@@ -14,7 +14,7 @@
         <h2>
             Sito in costruzione
         </h2>
-    <img id = "underconstruction" src="/asset/img/underconstruction.jpg" alt="under construction" />
+    <img id = "underconstruction" src="asset/img/underconstruction.jpg" alt="under construction" />
 </div>
 <div class="col-md-3"></div>
 
