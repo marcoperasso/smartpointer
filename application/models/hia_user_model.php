@@ -7,7 +7,7 @@ class HIA_User_model extends MY_Model {
     var $password;
     var $regid;
     var $pingdate;
-
+    var $logindate;
     public function __construct() {
         parent::__construct();
     }
@@ -32,7 +32,12 @@ class HIA_User_model extends MY_Model {
                     'pingdate' => date('Y-m-d')
         ));
     }
- 
+  public function update_user_login_date() {
+        $this->db->where('phone', $this->phone);
+        return $this->db->update('hia_users', array(
+                    'logindate' => date('Y-m-d')
+        ));
+    }
     public function delete_user($phone) {
         $query = $this->db->delete('hia_users ', array('phone' => $phone));
     }

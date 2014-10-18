@@ -214,6 +214,7 @@ class Hereiam extends CI_Controller {
         $response = array('success' => $success, 'version' => 1);
         if ($success) {
             set_user($this->HIA_User_model);
+            $this->HIA_User_model->update_user_login_date();
             $response["mail"] = $this->HIA_User_model->mail;
         } else {
             $response["message"] = "Login failed. Invalid user or password";
