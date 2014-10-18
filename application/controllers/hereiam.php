@@ -16,6 +16,7 @@ if (!defined('BASEPATH')) {
         const MSG_MESSAGE = 5;
         const MSG_POSITION = 6;
         const MSG_PING = 7;
+        const MSG_REQUEST_TO_REMOVE_CONTACT = 8;
 
 class Hereiam extends CI_Controller {
 
@@ -299,7 +300,10 @@ class Hereiam extends CI_Controller {
         $this->internal_message_to_user(
                 $this->input->post("userphone"), MSG_REMOVE_CONTACT, TRUE, array("time" => $this->input->post("time")));
     }
-
+    public function request_user_disconection() {
+        $this->internal_message_to_user(
+                $this->input->post("userphone"), MSG_REQUEST_TO_REMOVE_CONTACT, TRUE, array("time" => $this->input->post("time")));
+    }
     public function message_to_user() {
         $message = $this->input->post('message');
         $phone = $this->input->post('userphone');

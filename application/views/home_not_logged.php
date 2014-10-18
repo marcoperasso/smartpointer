@@ -3,7 +3,7 @@
     <style>
        #underconstruction
        {
-           width:100%;
+           width:400px;
            height: auto;
            margin-left: auto;
            margin-right: auto;
@@ -17,4 +17,11 @@
     <img id = "underconstruction" src="asset/img/underconstruction.jpg" alt="under construction" />
 </div>
 <div class="col-md-3"></div>
-
+<script type="text/javascript">
+$(function(){
+  $('body').css({ min-height: $(window).innerHeight() });
+  $(window).resize(function(){
+    $('body').css({ min-height: $(window).innerHeight() });
+  });
+});
+</script>
