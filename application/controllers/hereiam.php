@@ -148,7 +148,7 @@ class Hereiam extends CI_Controller {
         $this->HIA_User_model->mail = $this->input->post('email');
         $this->HIA_User_model->phone = $phone;
         $this->HIA_User_model->pingdate = date('Y-m-d H:i:s');
-
+		$this->HIA_User_model->logindate = date('Y-m-d H:i:s');
         $this->load->library('BCrypt');
         $bcrypt = new BCrypt(15);
 
