@@ -14,14 +14,14 @@
         <h2>
             Sito in costruzione
         </h2>
-    <img id = "underconstruction" src="asset/img/underconstruction.jpg" alt="under construction" />
+    <img id = "underconstruction" src="application/asset/img/underconstruction.jpg" alt="under construction" />
 </div>
 <div class="col-md-3"></div>
 <script type="text/javascript">
 $(function(){
-  $('body').css({ min-height: $(window).innerHeight() });
+  $('body').css({ "min-height": $(window).innerHeight() });
   $(window).resize(function(){
-    $('body').css({ min-height: $(window).innerHeight() });
+    $('body').css({ "min-height": $(window).innerHeight() });
   });
 });
 </script>

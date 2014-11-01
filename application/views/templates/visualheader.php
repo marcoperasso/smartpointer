@@ -8,7 +8,7 @@
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="" title="Pagina principale"><img alt="logo" src="asset/img/logo-small.png"/></a>
+            <a class="navbar-brand" href="" title="Pagina principale"><img alt="logo" src="application/asset/img/logo-small.png"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

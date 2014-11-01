@@ -2,7 +2,7 @@
 <div class="col-md-2"></div>
 <div class="col-md-4 center-text">
     <a href="" title="Vai alla pagina principale">
-        <img class="logo" src="asset/img/logo.png" id="ecommuter_logo">
+        <img class="logo" src="application/asset/img/logo.png" id="ecommuter_logo">
     </a>
 </div>
 <div class="col-md-4 container">

@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?php echo base_url() ?>asset/js/jquery.complexify.js"></script>
-<script type="text/javascript" src="<?php echo base_url() ?>asset/js/md5-min.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>application/asset/js/jquery.complexify.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>application/asset/js/md5-min.js"></script>
 <script type="text/javascript" >
     function getInvalidFields(scope)
     {

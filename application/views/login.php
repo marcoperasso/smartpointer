@@ -24,9 +24,9 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<script type="text/javascript" src="asset/js/modal.js"></script>
+<script type="text/javascript" src="application/asset/js/modal.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="asset/js/md5-min.js"></script>
+<script type="text/javascript" src="application/asset/js/md5-min.js"></script>
 <script type="text/javascript">
     $("#loginforget").click(resetPassword);
     $("#dologin").click(doLogin);

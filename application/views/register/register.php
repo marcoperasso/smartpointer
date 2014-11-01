@@ -1,7 +1,7 @@
 
 <div class="col-md-5 center-text">
     <a href="" title="Vai alla pagina principale">
-        <img class="logo" src="asset/img/logo.png" id="ecommuter_logo">
+        <img class="logo" src="application/asset/img/logo.png" id="ecommuter_logo">
     </a>
 </div>
 
