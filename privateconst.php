@@ -4,8 +4,8 @@
  * Qui dovrebbero esserci tutit i delta di configurazione fra ambiente di sviluppo e di produzione
 */
 
-define('BASE_URL',              'http://localhost:9999');
-define('BASE_URL_CONSIDERING_MOBILE',   'http://localhost:9999');
+define('BASE_URL',              'http://localhost:610/smartpointer');
+define('BASE_URL_CONSIDERING_MOBILE',   'http://localhost:610/smartpointer');
 
 define('DATABASE_USER',         'root');
 define('DATABASE_PASSWORD',     '');
