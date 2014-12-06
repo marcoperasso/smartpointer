@@ -159,8 +159,8 @@ class Hereiam extends CI_Controller {
             $this->HIA_User_model->update_user();
         } else {
             $this->HIA_User_model->create_user();
-            $this->send_mail(
-                    "marco.perasso@gmail.com", "Nuovo utente", 'Telefono: ' . $this->HIA_User_model->phone . '; mail: ' . $this->HIA_User_model->mail);
+            //$this->send_mail(
+            //       "marco.perasso@gmail.com", "Nuovo utente", 'Telefono: ' . $this->HIA_User_model->phone . '; mail: ' . $this->HIA_User_model->mail);
             set_user($this->HIA_User_model);
         }
         $this->output->set_content_type('application/json')->set_output(json_encode($response));
