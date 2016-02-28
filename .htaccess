@@ -4,8 +4,14 @@ RewriteEngine On
 RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+/)?(css|js|img|fonts)/(.+)$ smartpointer/application/asset/$2/$3 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+/)?templates/(.+)$ smartpointer/application/views/templates/$2 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.+)$ index.php?/$1 [L]
+RewriteRule ^(.+)$ smartpointer/index.php?/$1 [L]
 
 
 </IfModule>
