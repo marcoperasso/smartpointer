@@ -15,18 +15,19 @@ class Jump extends CI_Controller {
     public function index() {
         $this->load->view("jump/post");
     }
-public function test()
-{
-    echo '<form enctype="multipart/form-data" action="saveImage/flip-grass-banner.jpg" method="POST">
+
+    public function test() {
+        echo '<form enctype="multipart/form-data" action="saveImage/flip-grass-banner.jpg" method="POST">
   
   Invia questo file: <input name="userfile" type="file"></br>
   <input type="submit" value="Invia File">
 </form>"';
-}
+    }
+
     public function saveImage($name) {
         $config['upload_path'] = './application/upload/jump';
         $config['allowed_types'] = 'gif|jpg|png';
-       $config['max_size'] = '2000';
+        $config['max_size'] = '2000';
         $config['max_width'] = '2000';
         $config['max_height'] = '2000';
         $config['overwrite'] = TRUE;
@@ -43,7 +44,7 @@ public function test()
             if (!$this->upload->do_upload()) {
                 $response["messages"] = array('error' => $this->upload->display_errors());
                 $response["success"] = FALSE;
-                
+
                 $response["aa"] = $_FILES;
             }
         }
@@ -51,7 +52,7 @@ public function test()
     }
 
     public function getImage($name) {
-        $path = './application/upload/jump/'. $name .'.jpg';
+        $path = './application/upload/jump/' . $name . '.jpg';
         $this->output->set_content_type('jpeg')->set_output(file_get_contents($path));
     }
 
