@@ -5,7 +5,7 @@
         <style type="text/css">
             body
             {
-                background-color: #4CFF00;
+                background-color: #CCF0FF;
 
             }
             h1
