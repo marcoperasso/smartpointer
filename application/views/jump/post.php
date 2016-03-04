@@ -17,13 +17,7 @@
             h2{
                 text-align: center;
             }
-            img.logo
-            {
-                position: absolute;
-                left: 10px;
-                top: 10px;
-                width: 100px;
-            }
+           
             img.board
             {
                 display: block;
@@ -45,8 +39,7 @@
     <body>
         <div class="header">
             <h1>Jump</h1>
-            <img src="asset/img/flip-grass.png" class="logo"/>
-            <img src="asset/img/flip-grass.png" class="logo" style="left:auto; right: 10px;"/>
+           
         </div>
 
         <a href="https://play.google.com/store/apps/details?id=smartpointer.jump" title="Jump is on Google Play">

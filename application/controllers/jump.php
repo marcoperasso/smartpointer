@@ -53,7 +53,15 @@ class Jump extends CI_Controller {
 
     public function getImage($name) {
         $path = './application/upload/jump/' . $name . '.jpg';
-        $this->output->set_content_type('jpeg')->set_output(file_get_contents($path));
+        for ($i = 0; $i < 10; $i++)
+        {
+            if (file_exists($path)) 
+            {
+                $this->output->set_content_type('jpeg')->set_output(file_get_contents($path));
+                return;
+            }
+            sleep(1);
+        }
     }
 
 }
