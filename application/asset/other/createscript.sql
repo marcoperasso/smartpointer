@@ -54,4 +54,23 @@ CREATE TABLE `routes` (
 
 
 
+CREATE TABLE IF NOT EXISTS `hia_users` (
+  `phone` char(20) NOT NULL DEFAULT '',
+  `mail` varchar(255) NOT NULL DEFAULT '',
+  `password` char(60) DEFAULT NULL,
+  `regid` varchar(250) DEFAULT NULL,
+  `pingdate` date NOT NULL,
+  `logindate` date NOT NULL,
+  PRIMARY KEY (`phone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `jump_users` (
+  `phone` char(20) NOT NULL DEFAULT '',
+  `regid` varchar(250) DEFAULT NULL,
+  `pingdate` date NOT NULL,
+  PRIMARY KEY (`phone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
