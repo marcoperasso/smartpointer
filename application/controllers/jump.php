@@ -3,12 +3,12 @@
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
+        const SUCCESS = 0;
+        const CUSTOM_ERROR = 1;
+        const NO_RECEIVER_IDS = 2;
+        const MSG_MESSAGE = 0;
 
 class Jump extends CI_Controller {
-
-    const SUCCESS = 0;
-    const CUSTOM_ERROR = 1;
-    const NO_RECEIVER_IDS = 2;
 
     public function __construct() {
         parent::__construct();
@@ -65,11 +65,30 @@ class Jump extends CI_Controller {
         }
     }
 
+    public function get_user($id) {
+        $response = array('success' => FALSE);
+        if ($this->Jump_User_model->get_user($id)) {
+            $response['success'] = TRUE;
+            $response['user'] = $this->Jump_User_model;
+        }
+
+        $this->output->set_content_type('application/json')->set_output(json_encode($response));
+    }
+
+    public function get_users($search) {
+        $response = $this->Jump_User_model->get_users($search);
+        $this->output->set_content_type('application/json')->set_output(json_encode($response));
+    }
+
     public function save_user() {
-        $phone = $this->input->post('phone');
-        $existing = $this->Jump_User_model->get_user($phone);
+        $id = $this->input->post('id');
+        $mail = $this->input->post('mail');
+        $name = $this->input->post('name');
+        $existing = $this->Jump_User_model->get_user($id);
         $response = array('success' => TRUE);
-        $this->Jump_User_model->phone = $phone;
+        $this->Jump_User_model->id = $id;
+        $this->Jump_User_model->mail = $mail;
+        $this->Jump_User_model->name = $name;
         $this->Jump_User_model->pingdate = date('Y-m-d H:i:s');
         $this->Jump_User_model->regid = $this->input->post('regid');
 
@@ -81,30 +100,19 @@ class Jump extends CI_Controller {
         $this->output->set_content_type('application/json')->set_output(json_encode($response));
     }
 
-    public function verify_registration() {
-        $json = $this->input->post("data");
-        $phones = json_decode($json);
-        foreach ($phones->users as &$phone) {
-            $phone = $this->Jump_User_model->get_user($phone) && !empty($this->Jump_User_model->regid);
-        }
-        $response = array('result' => SUCCESS, 'users' => $phones->users);
-        $this->output
-                ->set_content_type('application/json')
-                ->set_output(json_encode($response));
-    }
-     public function message_to_user() {
+    public function message_to_user() {
         $message = $this->input->post('message');
         $from = $this->input->post('from');
-        $phone = $this->input->post('userphone');
+        $to = $this->input->post('to');
         $time = $this->input->post('time');
 
         $this->internal_message_to_user(
-                $from, $phone, MSG_MESSAGE, TRUE, array("message" => $message, "time" => $time));
+                $from, $to, MSG_MESSAGE, TRUE, array("message" => $message, "time" => $time));
     }
 
-    private function internal_message_to_user($from, $phone, $response_code, $do_output = TRUE, $args = array()) {
+    private function internal_message_to_user($from, $to, $response_code, $do_output = TRUE, $args = array()) {
         $ids = "";
-        if ($this->Jump_User_model->get_user($phone))
+        if ($this->Jump_User_model->get_user($to))
             $ids = $this->Jump_User_model->regid;
         if ($ids == "") {
             $response->result = NO_RECEIVER_IDS;
@@ -113,8 +121,8 @@ class Jump extends CI_Controller {
             array_push($regids, $ids);
             $ar = array(
                 'msgtype' => $response_code,
-                'touserphone' => $phone,
-                'fromuserphone' => $from
+                'to' => $to,
+                'from' => $from
             );
             $ar = array_merge($ar, $args);
             $result = $this->send_message($regids, $ar);
@@ -127,7 +135,7 @@ class Jump extends CI_Controller {
                     ->set_output(json_encode($response));
         }
     }
-    
+
     private function send_message($registrationIDs, $data, $collapse_key = NULL) {
         $apiKey = "AIzaSyDDAXQI2FJrICPuWXRbBlJVBGQNZJaxoF4";
 
