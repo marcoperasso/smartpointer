@@ -1,6 +1,6 @@
 <hmtl>
     <head>
-        <title>Jump</title>
+        <title>Flip</title>
         <meta name="Description" content="<?php echo $this->input->get("content"); ?>">
         <style type="text/css">
             body
@@ -38,15 +38,15 @@
 
     <body>
         <div class="header">
-            <h1>Jump</h1>
+            <h1>Flip</h1>
            
         </div>
 
-        <a href="https://play.google.com/store/apps/details?id=smartpointer.jump" title="Jump is on Google Play">
+        <a href="https://play.google.com/store/apps/details?id=smartpointer.jump" title="Flip is on Google Play">
             <img src="getImage/<?php echo $this->input->get('image'); ?>" class="board"/>
         </a>
         <h2><?php echo $this->input->get("content"); ?></h2>
-        <h2><a href="https://play.google.com/store/apps/details?id=smartpointer.jump">Vieni a vedere Jump su Google Play!</a></h2>
+        <h2><a href="https://play.google.com/store/apps/details?id=smartpointer.jump">Vieni a vedere Flip su Google Play!</a></h2>
     </body>
 </hmtl>
 

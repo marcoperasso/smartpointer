@@ -121,11 +121,11 @@ class Jump extends CI_Controller {
             array_push($regids, $ids);
             $ar = array(
                 'msgtype' => $response_code,
-                'to' => $to,
-                'from' => $from
+                'toUser' => $to,
+                'fromUser' => $from
             );
             $ar = array_merge($ar, $args);
-            $result = $this->send_message($regids, $ar);
+            $result = $this->send_message($regids, $ar, $to);
             $response = array('result' => SUCCESS, "gcmresponse" => json_decode($result));
         }
 

@@ -66,11 +66,12 @@ CREATE TABLE IF NOT EXISTS `hia_users` (
 
 
 CREATE TABLE IF NOT EXISTS `jump_users` (
-  `phone` char(20) NOT NULL DEFAULT '',
+  `id` varchar(50) NOT NULL,
+  `mail` varchar(30) NOT NULL DEFAULT '',
+  `name` varchar(40) DEFAULT NULL,
   `regid` varchar(250) DEFAULT NULL,
   `pingdate` date NOT NULL,
-  PRIMARY KEY (`phone`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 
